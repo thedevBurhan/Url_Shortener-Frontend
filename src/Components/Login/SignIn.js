@@ -18,7 +18,7 @@ export const filedValidationScheme = yup.object({
   email: yup.string().required("Please fill your email"),
   password: yup.string().required("Please fill password"),
 });
-const Register = () => {
+const SignIn = () => {
   const { handleSubmit, values, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues: {
@@ -169,4 +169,4 @@ const Register = () => {
     </div>
   );
 };
-export default Register;
+export default SignIn;
