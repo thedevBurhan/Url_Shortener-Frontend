@@ -1,8 +1,8 @@
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import "./App.css";
 import { Route } from "react-router-dom/cjs/react-router-dom";
-import Login from "./Components/Login/login.js";
-import Register from "./Components/Login/signIn.js";
+import Login from "./Components/Login/login";
+import Register from "./Components/Login/signIn";
 import DashBoard from "./Components/DashBoard/DashBoard";
 function App() {
   return (
