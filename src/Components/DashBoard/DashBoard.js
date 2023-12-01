@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Base from "../../Base/Base";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import {
   Button,
-  Card,
   Input,
   InputAdornment,
   Table,
@@ -12,9 +10,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 import Swal from "sweetalert2";
-import Paper from "@mui/material/Paper";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import axios from "axios";
@@ -129,133 +128,131 @@ const DashBoard = () => {
   }
   return (
     <div>
-      <div className="logOut">
-        <Button
-          sx={{
-            color: "#c3c8dc",
-          }}
-          variant="text"
-          onClick={() => redirects()}
-        >
-          <LogoutIcon />
-          Logout{" "}
-        </Button>
-      </div>
-      <Base title={"Put Your URL To get Shorten"}>
-        <div className="input">
-          <Input
-            id="input-with-icon-adornment"
-            name="text"
-            type="text"
-            value={url}
-            onChange={(e) => setLongurl(e.target.value)}
-            placeholder="Enter your long url... "
-            startAdornment={
-              <InputAdornment position="start">
-                <AddLinkIcon />
-              </InputAdornment>
-            }
-          />
-
-          <Button
-            sx={{
-              color: "white",
-            }}
-            variant="text"
-            type="submit"
-            onClick={handleURL}
-          >
-            Shorten URL
+      <body className="mainBgReg">
+        <div>
+          <Button className="logOut" variant="text" onClick={() => redirects()}>
+            <LogoutIcon />
+            Logout{" "}
           </Button>
-        </div>
-        <h3 className="heading">User: {setUser}</h3>
-        <Card sx={{ p: "0.5px" }} className="Bg-color container">
-          <div className="user-table">
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow className="heading">
-                    <TableCell style={{ color: "#666F80" }}>S.No</TableCell>
-                    <TableCell style={{ color: "#666F80" }}>Long URL</TableCell>
-                    <TableCell style={{ color: "#666F80" }}>
-                      Short URL
-                    </TableCell>
-                    <TableCell style={{ color: "#666F80" }}>
-                      Total Click
-                    </TableCell>
-                    <TableCell style={{ color: "#666F80" }}>Delete</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {urls.length > 0 && urls ? (
-                    urls.length > 0 &&
-                    urls.map((item, index) => {
-                      return (
-                        <TableRow
-                          key={index}
-                          sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
+          <div className="inputbutton">
+            <Input
+              className="inp"
+              id="input-with-icon-adornment"
+              name="text"
+              type="text"
+              value={url}
+              onChange={(e) => setLongurl(e.target.value)}
+              placeholder="Enter your long url... "
+              startAdornment={
+                <InputAdornment position="start">
+                  <AddLinkIcon />
+                </InputAdornment>
+              }
+            />
+
+            <Button
+              className="containerbutton"
+              size="small"
+              variant="text"
+              type="submit"
+              onClick={handleURL}
+            >
+              Shorten URL
+            </Button>
+          </div>
+          <div className="Table">
+            <div className="user-table">
+              <TableContainer className="Tablecontainer">
+                <Table stickyHeader aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell style={{ color: "#666F80" }}>S.No</TableCell>
+                      <TableCell style={{ color: "#666F80" }}>
+                        Long URL
+                      </TableCell>
+                      <TableCell style={{ color: "#666F80" }}>
+                        Short URL
+                      </TableCell>
+                      <TableCell style={{ color: "#666F80" }}>
+                        Total Click
+                      </TableCell>
+                      <TableCell style={{ color: "#666F80" }}>Delete</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody className="tablerow">
+                    {urls.length > 0 && urls ? (
+                      urls.length > 0 &&
+                      urls.map((item, index) => {
+                        return (
+                          <TableRow
+                            key={index}
+                            sx={{
+                              "&:last-child td, &:last-child th": {
+                                border: 0,
+                              },
+                            }}
+                          >
+                            <TableCell component="th" scope="row">
+                              {index + 1}
+                            </TableCell>
+
+                            <TableCell>
+                              <a
+                                href={item.redirectURL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {item.redirectURL}
+                              </a>
+                            </TableCell>
+
+                            <TableCell style={{ color: "rgb(36,164,242)" }}>
+                              <a
+                                href={`https://url-shortener-backened.vercel.app/${item.shortID}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {item.shortID}
+                              </a>
+                            </TableCell>
+
+                            <TableCell align="center">
+                              {item.visitHistory.length}
+                            </TableCell>
+
+                            <TableCell>
+                              <Button
+                                className="button-BgReg"
+                                variant="outlined"
+                                onClick={() => handleDelete(item._id)}
+                              >
+                                <DeleteOutlineIcon />
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })
+                    ) : (
+                      <div className="message">
+                        {" "}
+                        <h4
+                          style={{
+                            color: "rgb(99,102,241)",
+                            fontFamily: "monospace",
                           }}
                         >
-                          <TableCell component="th" scope="row">
-                            {index + 1}
-                          </TableCell>
-
-                          <TableCell>
-                            <a
-                              href={item.redirectURL}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {item.redirectURL}
-                            </a>
-                          </TableCell>
-
-                          <TableCell style={{ color: "rgb(36,164,242)" }}>
-                            <a
-                              href={`https://url-shortener-backened.vercel.app/${item.shortID}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {item.shortID}
-                            </a>
-                          </TableCell>
-
-                          <TableCell align="center">
-                            {item.visitHistory.length}
-                          </TableCell>
-
-                          <TableCell>
-                            <button
-                              className="button-Bg"
-                              onClick={() => handleDelete(item._id)}
-                            >
-                              <DeleteOutlineIcon />
-                            </button>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })
-                  ) : (
-                    <div className="message">
-                      {" "}
-                      <h4
-                        style={{
-                          color: "rgb(99,102,241)",
-                          fontFamily: "monospace",
-                        }}
-                      >
-                        {" "}
-                        No Data To BE shown
-                      </h4>{" "}
-                    </div>
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                          {" "}
+                          No Data To BE shown
+                        </h4>{" "}
+                      </div>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
           </div>
-        </Card>
-      </Base>
+        </div>
+      </body>
     </div>
   );
 };

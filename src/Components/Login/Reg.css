@@ -1,0 +1,73 @@
+.mainBgReg {
+  background: url("./wall.jpg");
+  height: 100vh;
+  background-size: 100%;
+  box-sizing: border-box;
+  background-repeat: repeat;
+  background-blend-mode: lighten;
+  /* background-color: rgba(133, 231, 231, 0.733); */
+}
+.headingsReg {
+  color: #080808bc;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+.containerReg {
+  margin: 0 auto;
+  padding: 10px;
+  background: #ffffff;
+  box-shadow: -5px 5px 10px #c7c7c7, 2px -2px 5px #ffffff;
+  border-radius: 20px;
+}
+.register-newReg {
+  color: #080808bc;
+  font-size: 14px;
+  /* border: 1px solid black; */
+}
+.RegReg {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+}
+.button-BgReg {
+  /* background-color: #966e33f3 !important; */
+  color: #080808bc !important;
+  margin-left: 10px !important;
+  border: 1px solid #e5eaf5 !important;
+  background: #ffffff;
+  box-shadow: -5px 5px 10px #c7c7c7, 2px -2px 5px #ffffff;
+  border-radius: 20px;
+}
+
+.forget-passwordReg {
+  font-size: smaller;
+  color: #1f2833;
+  cursor: pointer;
+  margin: 12px 0;
+}
+.forget-passwordReg:hover {
+  color: #8a98d5c5;
+}
+.formReg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column !important;
+  padding: 1px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .mainBgReg {
+    background: url("./wall.jpg");
+    height: auto;
+  }
+  .containerReg {
+    background: #ffffff;
+    box-shadow: -5px 5px 10px #c7c7c7, 2px -2px 5px #ffffff;
+  }
+  .formReg {
+    padding: 10px;
+    width: auto !important;
+    /* border: 1px solid black; */
+  }
+}
