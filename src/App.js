@@ -1,8 +1,8 @@
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 import "./App.css";
 import { Route } from "react-router-dom/cjs/react-router-dom";
-import Login from "./Components/Login/login";
-import Register from "./Components/Login/signIn";
+import Login from "./Components/Login/login"
+import SignIn from "./Components/Login/signIn"
 import DashBoard from "./Components/DashBoard/DashBoard";
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           <Login />
         </Route>
         <Route path="/SignIn">
-          <Register/>
+          <SignIn/>
         </Route>
         <Route path="/DashBoard">
           <DashBoard />
