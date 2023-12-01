@@ -23,7 +23,6 @@ const DashBoard = () => {
   const [urls, setUrls] = useState([]);
   const [data, setData] = useState({});
   const history = useHistory();
-  var setUser = localStorage.getItem("user");
 
   //  alert Function
   const Toast = Swal.mixin({
